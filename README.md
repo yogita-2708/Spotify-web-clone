@@ -1,7 +1,7 @@
 # Spotify-web-clone
 
 # Introduction
-    This GitHub repository contains a demo version of a Spotify web, showcasing key features of the original Spotify application using fundamental web development technologies such as HTML, Tailwind CSS, Node.js, and Express.js. Additionally, it incorporates the Google Accounts API to implement and showcase the "Sign in with Google" button feature.
+This GitHub repository contains a demo version of a Spotify web, showcasing key features of the original Spotify application using fundamental web development technologies such as HTML, Tailwind CSS, Node.js, and Express.js. Additionally, it incorporates the Google Accounts API to implement and showcase the "Sign in with Google" button feature.
 
 # Features
 - User Authentication:
