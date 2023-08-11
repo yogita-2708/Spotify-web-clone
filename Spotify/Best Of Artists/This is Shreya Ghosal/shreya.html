@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shreya Ghoshal</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="shreya.css">
+        </head>
+<body>
+
+    <div class="container">
+        <div class="w-60 sticky bg-black flex-none">
+            <div class="p-0">
+                <img src="logo1.png" class="h-12" style="filter: brightness(0) invert(rgb(0,255,127)); margin-bottom: 15px;">
+            </div>
+            <div class="font-body">
+                <button class="w-full text-md text-white font-semibold rounded px-3 py-3 flex items-center justify-start hover:bg-zinc-800"><i class="material-symbols-outlined mx-4">home</i>
+                    <a href="/index.html">Home</a></button>
+                <button class="w-full text-md text-white font-semibold rounded px-3 py-3 flex items-center justify-start hover:bg-zinc-800"><i class="material-symbols-outlined mx-4">search</i>
+                    <a href="/search.html">Search</a></button>
+                <button class="w-full mb-5 text-md text-white font-semibold rounded px-3 py-3 flex items-center justify-start hover:bg-zinc-800"><i class="material-symbols-outlined mx-4">menu</i>
+                    Your Library</button>
+                <div class="mx-5">
+                    <h1 class="mb-6 text-zinc-500 text-sm tracking-widest uppercase">Playlists</h1>
+                    <button class="w-full text-md opacity-60 hover:opacity-100 text-white font-semibold rounded px-3 py-1 flex items-center justify-start"> <img src="playlist.jpg" class="h-8 w-8 mr-3">
+                     <p class="text-sm text white font-semibold">  Create Playlist</p></button>
+                    <button class="w-full text-md opacity-60 hover:opacity-100 text-white font-semibold rounded px-3 py-1 flex items-center justify-start"> <img src="liked songs.jpg"  class="h-8 w-8 mr-3">
+                        <p class="text-sm text white font-semibold"> Liked Songs</p></button>
+                    <div class="h-px w-full bg-light my-3"></div>
+                </div>
+                
+                
+            </div>
+    </div>
+        <div class="songList">
+            <div class="w-full relative top-0 py-2 px-6 flex items-center justify-between bg-black">
+                <div class="flex items-center">
+                    <button onclick="history.back()" class="rounded-full bg-black w-9 h-9 text-white opacity-50 hover:opacity-100">
+                        <i class="material-symbols-outlined text-3xl">keyboard_arrow_left</i>
+                    </button>
+                    <button onclick="history.forward()" class="rounded-full bg-black mx-3 w-9 h-9 text-white opacity-50 hover:opacity-100">
+                        <i class="material-symbols-outlined text-3xl">keyboard_arrow_right</i>
+                    </button>
+                </div>
+            </div>
+            <div style="margin-left: 380px;">
+            <img src="covers/poster.jpg" alt="" width="200" style="padding: 5px;">
+            </div>
+            <h1 class="text-xl font-bold text-white tracking-wider my-2" style="margin-left: 250px;">SHREYA GHOSHAL</h1>
+            <h3 class="text-base font-bold text-gray-500 tracking-wider my-1" style="margin-left: 250px;">The essential tracks, all in one playlist.</h3>
+            <a href="#" onclick="changeColor()" class="fas fa-lg fa-heart" id="change" style="margin-left: 250px; margin-top: 7px;"></a>
+            <div class="p-0 w-44 absolute" style="margin-left: 550px;">
+                <div class="absolute w-full h-full flex items-end justify-center p-0">
+                    <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center focus:outline-none">
+                        <button onclick="play();" id="song1"><i class="fa fa-play fa-1x text-black" id="play-btn" style="margin-top: 5px; margin-left: 5px;"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="songItemContainer">
+                <div class="songItem">
+                    <img alt="1">
+                    <span class="songName">Yeh Aaina</span>
+                    <span class="songlistplay"><span class="timestamp">05:34 <i id="0" class="far songItemPlay fa-play-circle" style="margin-left: 25px;"></i></span></span>
+                </div>
+                <div class="songItem">
+                    <img alt="1">
+                    <span class="songName">Yeh Ishq Hai</span>
+                    <span class="songlistplay"><span class="timestamp">05:30 <i id="1" class="far songItemPlay fa-play-circle" style="margin-left: 25px;"></i> </span></span>
+                </div>
+                <div class="songItem">
+                    <img alt="1">
+                    <span class="songName">Rozana</span>
+                    <span class="songlistplay"><span class="timestamp">05:40 <i id="2" class="far songItemPlay fa-play-circle" style="margin-left: 25px;"></i> </span></span>
+                </div>
+                <div class="songItem">
+                    <img alt="1">
+                    <span class="songName">Sun Raha Hai Na Tu</span>
+                    <span class="songlistplay"><span class="timestamp">05:34 <i id="3" class="far songItemPlay fa-play-circle" style="margin-left: 25px;"></i> </span></span>
+                </div>
+                <div class="songItem">
+                    <img alt="1">
+                    <span class="songName">Param Sundari</span>
+                    <span class="songlistplay"><span class="timestamp">05:36 <i id="4" class="far songItemPlay fa-play-circle" style="margin-left: 25px;"></i> </span></span>
+                </div>
+                <div class="songItem">
+                    <img alt="1">
+                    <span class="songName">Chikni Chameli</span>
+                    <span class="songlistplay"><span class="timestamp">05:34 <i id="5" class="far songItemPlay fa-play-circle" style="margin-left: 25px;"></i> </span></span>
+                </div>
+                <div class="songItem">
+                    <img alt="1">
+                    <span class="songName">Chaka Chak</span>
+                    <span class="songlistplay"><span class="timestamp">05:28 <i id="6" class="far songItemPlay fa-play-circle" style="margin-left: 25px;"></i> </span></span>
+                </div>
+                <div class="songItem">
+                    <img alt="1">
+                    <span class="songName">Ghar More Pardesiya</span>
+                    <span class="songlistplay"><span class="timestamp">05:30 <i id="7" class="far songItemPlay fa-play-circle" style="margin-left: 25px;"></i> </span></span>
+                </div>
+                <div class="songItem">
+                    <img alt="1">
+                    <span class="songName">Digu Digu Digu Naga</span>
+                    <span class="songlistplay"><span class="timestamp">05:34 <i id="8" class="far songItemPlay fa-play-circle" style="margin-left: 25px;"></i> </span></span>
+                </div>
+                <div class="songItem">
+                    <img alt="1">
+                    <span class="songName">Pal</span>
+                    <span class="songlistplay"><span class="timestamp">05:28 <i id="9" class="far songItemPlay fa-play-circle" style="margin-left: 25px;"></i> </span></span>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="bottom">
+        
+        <div class="icons">
+            <!-- fontawesome icons -->
+            <i class="fas fa-lg fa-step-backward" id="previous"></i>
+            <i class="far fa-lg fa-play-circle" id="masterPlay"></i>
+            <i class="fas fa-lg fa-step-forward" id="next"></i> 
+        </div>
+        <input type="range" name="range" id="myProgressBar" min="0" value="0" max="100">
+        <div class="songInfo">
+            <img src="playing.gif" width="42px" alt="" id="gif"> <span id="masterSongName"></span>
+        </div>
+    </div>
+    <script src="shreya.js"></script>
+    <script src="https://kit.fontawesome.com/26504e4a1f.js" crossorigin="anonymous"></script>
+</body>
+</html>

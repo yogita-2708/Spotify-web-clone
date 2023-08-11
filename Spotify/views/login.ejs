@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <!-- Include Tailwind CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-800 flex items-center justify-center h-screen">
+  <div class="bg-black shadow-md rounded px-8 py-8 md:px-16 md:py-12 w-full max-w-md">
+    <div class="flex flex-col items-center mb-6">
+      <img class="w-45 h-20 mb-4" src="https://st.depositphotos.com/37050820/58882/v/450/depositphotos_588825950-stock-illustration-spotify-logo-dark-mode.jpg" alt="Spotify Logo">
+      <!-- <h1 class="text-2xl text-white font-bold mb-7">Log in to Spotify</h1> -->
+    </div>
+    <div class="mb-6 ">
+    <div id="google-signin-button"></div>
+    </div>
+    <div class="mb-6">
+      <button class="bg-gray-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+        type="button">
+        Sign In with Phone Number
+      </button>
+    </div>
+    
+    <form id="login-form">
+      <div class="mb-4">
+        <label class="block text-white text-sm font-bold mb-2" for="email">
+          Email
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="email" type="email" placeholder="Enter your email">
+      </div>
+      <div class="mb-6">
+        <label class="block text-white text-sm font-bold mb-2" for="password">
+          Password
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="password" type="password" placeholder="Enter your password">
+      </div>
+      <div class="flex items-center justify-between">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit">
+          Log In
+        </button>
+        <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+          href="#">Forgot Password?</a>
+      </div>
+    </form>
+    <div class="mt-6">
+      <p class="text-center text-gray-600">Don't have an account? <a class="font-bold text-blue-500 hover:text-blue-800"
+          href="http://127.0.0.1:5500/mainsignup.html">Sign up for Spotify</a></p>
+    </div>
+  </div>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script>
+        function handleCredentialResponse(response) {
+      // Handle the response when a user signs in with Google
+      // This function will be called when the user successfully signs in with Google
+      var credential = response.credential;
+      // Send the credential to your server for further processing
+  
+      console.log(credential); // Display credential object in the console
+    }
+  
+    function startGoogleSignIn() {
+      // Initialize the Google One Tap API
+      google.accounts.id.initialize({
+        client_id: '61490555357-o21r9mmlq1cah6midgcc1nuaajbukrjk.apps.googleusercontent.com',
+        callback: handleCredentialResponse,
+      });
+  
+      // Render the "Sign in with Google" button
+      google.accounts.id.renderButton(
+        document.getElementById('google-signin-button'),
+        {
+          theme: 'filled_blue',
+          size: 'large',
+          shape: 'rectangular',
+          
+          text: 'Sign in with Google',
+        }
+      );
+    }
+  
+    // Load the Google One Tap API library
+    window.onload = function () {
+      google.accounts.id.prompt(notification => {
+        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+          // The One Tap prompt is not displayed or the user skipped it,
+          // so manually start the sign-in process
+          startGoogleSignIn();
+        }
+      });
+    };
+  </script>
+  
+  <script>
+    const loginForm = document.getElementById('login-form');
+
+    loginForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Replace these values with the email and password you want to check
+        const expectedEmail = 'yog27@gmail.com';
+        const expectedPassword = 'yogita0801';
+
+        if (email === expectedEmail && password === expectedPassword) {
+            // Redirect to dashboard or another page on successful login
+            window.location.href = 'http://127.0.0.1:5500/index.html';
+        } else {
+            // Display error message to the user
+            alert('Invalid email or password.');
+        }
+    });
+</script>
+
+
+</body>
+  
+
+</html>
+
+
+  

@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Clone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="bg-neutral-900 h-screen font-body" style="height: 100vh;">
+        <div class="flex" style="height: 90vh;">
+        <!-- side bar -->
+            <div class="w-60 bg-black h-full flex-none">
+                    <div class="p-6">
+                        <img src="logo1.png" class="h-10" style="filter: brightness(0) invert(rgb(0,255,127));">
+                    </div>
+                    <div class="font-body">
+                        <button class="w-full text-md text-white font-semibold rounded px-3 py-2 flex items-center justify-start hover:bg-zinc-800"><i class="material-symbols-outlined mx-4">home</i>
+                            <a href="index.html">Home</a></button>
+                        <button class="w-full text-md text-white font-semibold rounded px-3 py-2 flex items-center justify-start hover:bg-zinc-800"><i class="material-symbols-outlined mx-4">search</i>
+                            <a href="search.html">Search</a></button>
+                        <button class="w-full text-md text-white font-semibold rounded px-3 py-2 flex items-center justify-start hover:bg-zinc-800"><i class="material-symbols-outlined mx-4">menu</i>
+                            Your Library</button>
+                        <div class="mx-5">
+                            <h1 class="mb-3 text-zinc-500 text-xs tracking-widest uppercase">Playlists</h1>
+                            <button class="w-full text-md opacity-60 hover:opacity-100 text-white font-semibold rounded px-3 py-1 flex items-center justify-start"> <img src="playlist.jpg" class="h-7 w-7 mr-3">
+                             <p class="text-sm text white font-semibold">  Create Playlist</p></button>
+                            <button class="w-full text-md opacity-60 hover:opacity-100 text-white font-semibold rounded px-3 py-1 flex items-center justify-start"> <img src="liked songs.jpg"  class="h-7 w-7 mr-3">
+                                <p class="text-sm text white font-semibold"> Liked Songs</p></button>
+                            <div class="h-px w-full bg-light my-3"></div>
+                        </div>
+                        <div class="mx-5">
+                            <div class="w-full h-10 overflow-y-scroll opacity-20 hover:opacity-50">
+                                <div class="text-white p-3 text-sm py-1">
+                                    <button class="pb-2">Your Top Mixes</button><br>
+                                    <button class="pb-2">Romantic Mix</button><br>
+                                    <button class="pb-2">Happy Mix</button><br>
+                                    <button class="pb-2">K-Pop Mix</button><br>
+                                    <button class="pb-2">Uniquely Yours</button><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mx-5 pt-4">
+                            <button class="flex text-sm items-center justify-start text-white font-semibold opacity-60 hover:opacity-100">
+                                <i class="material-symbols-outlined mx-4">file_download</i>
+                                Install Apps 
+                            </button>
+                        </div>
+                        <div class="relative pt-4">
+                            <div class=" p-2 w-full h-full flex justify-end opacity-0 hover:opacity-80 items-start absolute">
+                                <div class="bg-black rounded-full my-1 h-6 w-6">
+                                    <button><i class="text-white material-symbols-outlined">keyboard_arrow_down</i></button>
+                                </div>
+                            </div>
+                            <img class=" my-0 object-fill h-36 w-60" src="senorita.jpg">
+                        </div>
+                    </div>
+            </div>
+        <!-- main content -->
+            <div class="w-full h-full relative overflow-y-scroll overflow-x-hidden">
+            <!-- header -->
+                <div class="w-full relative top-0 py-4 px-6 flex items-center justify-between bg-black">
+                    <div class="flex items-center">
+                        <button onclick="history.back()" class="rounded-full bg-black w-8 h-8 text-white opacity-50 hover:opacity-100">
+                            <i class="material-symbols-outlined text-3xl">keyboard_arrow_left</i>
+                        </button>
+                        <button onclick="history.forward()" class="rounded-full bg-black mx-3 w-8 h-8 text-white opacity-50 hover:opacity-100">
+                            <i class="material-symbols-outlined text-3xl">keyboard_arrow_right</i>
+                        </button>
+                    </div>
+                        <div class="relative">
+                            <button onclick="showDropdown()" class="bg-neutral-800 rounded-full py-1 px-2 flex items-center" id="dropdownDefault" data-dropdown-toggle="dropdown">
+                                <img src="Powerpuff.png" class="rounded-full h-7 w-8 mr-1">
+                                <p class="text-white px-3 font-semibold text-sm">Powerpuff Girls</p>
+                                <i class="material-symbols-outlined opacity-40 hover:opacity-90 text-white">arrow_drop_down</i>
+                            </button>
+                                            <!-- drop down menu use JS -->
+                            <div class=" hidden absolute bg-neutral-800 w-full rounded mt-1" id="dropdown">
+                                <button class="w-full text-white opacity-75 hover:opacity-100 pb-2 pt-2 border-b border-zinc-400 text-sm"><a href="app.html">Account</a></button>
+                                <button class="w-full text-white opacity-75 hover:opacity-100 text-sm my-2"><a href="http://localhost:5000">Log Out</a></button> 
+                            </div>
+                        </div>
+                </div> 
+                <!-- cards -->
+                <div class="flex items-center justify-between px-6 py-3">
+                    <button class="text-2xl font-semibold text-white tracking-wider hover:underline">Recently Played</button>
+                    <button class="text-zinc-500 text-xs font-semibold tracking-widest uppercase opacity-70 hover:opacity-90 mx-5 pb-3">See All</button>
+                </div>
+                <!-- recent section -->
+                <div class="w-full mx-4 flex flex-wrap">
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="safari.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Safari</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-6">Serena</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="laagilaganshankara.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Laagi Lagan Shankara</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-1">Hansraj Raghuwanshi</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="kyamujhepyarhai.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-xs font-semibold text-white tracking wide">Kya Mujhe Pyar Hai</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-6">KK</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="download (3).jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Chaand Baaliyan</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-6">Aditya A</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="onedirection.jpeg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">What Makes You Beautiful</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-1">Up all Night</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="maiyyamainu.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Maiyya Mainu(From"Jersey")</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-1">Sachet-Parampara</h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- section 1-->
+                <div class="flex items-center justify-between px-6 py-3">
+                    <button class="text-2xl font-semibold text-white tracking-wider hover:underline">Shows you might like</button>
+                    <button class="text-zinc-500 text-xs font-semibold tracking-widest uppercase opacity-70 hover:opacity-90 mx-5 pb-3">See All</button>
+                </div>
+                <div class="w-full mx-4 flex flex-wrap">
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="jayshetty.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">On Purpose With Jay Shetty</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide">Jay Shetty</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative flex">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="calmmitdown.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Calm it Down</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide">Chad Lawson</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative flex">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="lanablakely.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">The Lana Blakely Podcast</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide">Lana Blakely</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative flex">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="conspiracytheories.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Conspiracy Theories</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide">Parcast</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative flex">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="beerbiceps.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">The Ranveer Show</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide">BeerBiceps aka Ranveer Allahbadia</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative flex">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="horrorshow.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">The Horror Show</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide">Karnik Khare</h2>
+                        </div>
+                    </div> 
+                </div>
+                <!-- section 2 -->
+                <div class="flex items-center justify-between px-6 py-3">
+                    <button class="text-2xl font-semibold text-white tracking-wider hover:underline">Best of the Decade For You</button>
+                    <button class="text-zinc-500 text-xs font-semibold tracking-widest uppercase opacity-70 hover:opacity-90 mx-5 pb-3">See All</button>
+                </div>
+                <div class="w-full mx-4 flex flex-wrap">
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="friends.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">FRIENDS</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Marshmello,Anne-Marie</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="butter.png" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Butter</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-4">BTS</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="senorita.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Senorita</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Shawn Mendes,C.Cabello</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="savage love.png" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Savage Love</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Jawash 685,Jason Derulo,BTS</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="i like me better.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">I Like Me Better</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-4">Lauv</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="rockabye.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Rockabye</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Clean Bandit,Sean Paul,Anne-Marie</h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- section 3 -->
+                <div class="flex items-center justify-between px-6 py-3">
+                    <button class="text-2xl font-semibold text-white tracking-wider hover:underline">India's Best</button>
+                    <button class="text-zinc-500 text-xs font-semibold tracking-widest uppercase opacity-70 hover:opacity-90 mx-5 pb-3">See All</button>
+                </div>
+                <div class="w-full mx-4 flex flex-wrap">
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl"><a href="India's Best/Bollywood Butter/butter.html">play_arrow</a></i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="bollywoodbutter.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Bollywood Butter</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-1">The finest quality of Bollywood music.</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="punjabi101.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Punjabi 101</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-1">Enjoy the ultimate Punjabi hits.</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="kollywoodcream.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Kollywood Cream</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-1">The finest quality of Tamil music.</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="tollywoodpearls.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Tollywood Pearls</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-1">The finest quality of Telugu music.</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="indieindia.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Indie India</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-1">The popular trending Indie Hits.</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl"><a href="India's Best/Radar India/radar.html">play_arrow</a></i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="radarindia.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Radar india</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-1">Exciting artists from Indian Indie scene.</h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- section-4  -->
+                <div class="flex items-center justify-between px-6 py-3">
+                    <button class="text-2xl font-semibold text-white tracking-wider hover:underline">Your Top Mixes</button>
+                    <button class="text-zinc-500 text-xs font-semibold tracking-widest uppercase opacity-70 hover:opacity-90 mx-5 pb-3">See All</button>
+                </div>
+
+                <div class="w-full mx-4 flex flex-wrap">
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl"><a href="Moody Mix/moodymix.html">play_arrow</a></i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="prada.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Moody Mix</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">The Doorbeen,Stebin Ben and more</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl"><a href="Moody Mix/moodymix.html">play_arrow</a></i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="2010smix.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">2010s Mix</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Armaan Malik,Vishal-Shekhar and more</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="2000smix.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">2000s Mix</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Pritam,Shankar-Ehsaan Loy and more</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="90smix.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">90s Mix</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Kumar Sanu,Asha Bhosle and more</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="hansraj.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Almighty Mix</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Hansraj Raghuwanshi and more</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl"><a href="BTS Mix/btsmix.html">play_arrow</a></i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="bts mix.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">BTS Mix</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">BTS,Dynamite,K-Pop and more</h2>
+                     </div>
+                  </div>
+                </div>
+                <!-- section-5 -->
+                <div class="flex items-center justify-between px-6 py-3">
+                    <button class="text-2xl font-semibold text-white tracking-wider hover:underline">Recommended for today</button>
+                    <button class="text-zinc-500 text-xs font-semibold tracking-widest uppercase opacity-70 hover:opacity-90 mx-5 pb-3">See All</button>
+                </div>
+                <div class="w-full mx-4 flex flex-wrap">
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="stayalittlelonger.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-xs font-semibold text-white tracking wide">Stay A Little Longer</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-1">Anushka Shahaney</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="pasoori.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Pasoori</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Shae Gill,Ali Sethi</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="mehbooba.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Mehbooba</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Ananya Bhat</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="shiddat.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Shiddat</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Manan Bhardwaj</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="harleys.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Harleys In Hawaii</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Katy Perry</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="dynamite.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Dynamite</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">BTS</h2>
+                        </div>
+                    </div> 
+                </div>
+                <!-- section-6-->
+                <div class="flex items-center justify-between px-6 py-3">
+                    <button class="text-2xl font-semibold text-white tracking-wider hover:underline">Focus</button>
+                    <button class="text-zinc-500 text-xs font-semibold tracking-widest uppercase opacity-70 hover:opacity-90 mx-5 pb-3">See All</button>
+                </div>
+                <div class="w-full mx-4 flex flex-wrap">
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl"><a href="Focus/peaceful.html">play_arrow</a></i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="peaceful piano.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-xs font-semibold text-white tracking wide">Peaceful Piano</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Relax and indulge with beautiful piano pieces.</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="workout beats.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Workout Beats</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-3">Burn those extra calories.</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="lofi beats.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">lofi beats</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-3">Let yourself be sunkissed with lofi.</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="codingmode.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-xs font-semibold text-white tracking wide">Coding Mode</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Dedicated to all the programmers out there.</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="jazzinthebg.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Jazz In The Background</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-2">Soft jazz for you.</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="instrumentalstudy.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-xs font-semibold text-white tracking wide">Instrumental Study.</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">A soft musical backdrop for your studies.</h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- section-7-->
+                <div class="flex items-center justify-between px-6 py-3">
+                    <button class="text-2xl font-semibold text-white tracking-wider hover:underline">Best Of Artists</button>
+                    <button class="text-zinc-500 text-xs font-semibold tracking-widest uppercase opacity-70 hover:opacity-90 mx-5 pb-3">See All</button>
+                </div>
+                <div class="w-full mx-4 flex flex-wrap">
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl"><a href="Best Of Artists/This is Arijit Singh/arijit.html">play_arrow</a></i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="arijitsingh.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">This is Arijit Singh</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-6">This is Arijit Singh.The essential tracks,all in one playlist.</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="sachetparampara.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">This is Sachet-Parampara</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-1">This is Sachet-Parampara.The essential tracks,all in one playlist.</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="badshah.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">This is Badshah</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-10">This is Badshah.The essential tracks,all in one playlist.</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="taylorswift.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">This is Taylor Swift</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-6">This is Taylor Swift.The essential tracks,all in one playlist.</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="kumarsanu.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">This is Kumar Sanu</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-6">This is Kumar Sanu.The essential tracks,all in one playlist.</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl"><a href="Best Of Artists/This is Shreya Ghosal/shreya.html">play_arrow</a></i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="shreyaghoshal.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">This is Shreya Ghoshal</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-1">This is Shreya Ghoshal.The essential tracks,all in one playlist.</h2>
+                        </div>
+                    </div>
+                </div>
+                 <!-- section-9 -->
+                  <div class="flex items-center justify-between px-6 py-3">
+                    <button class="text-2xl font-semibold text-white tracking-wider hover:underline">Romantic Mix</button>
+                    <button class="text-zinc-500 text-xs font-semibold tracking-widest uppercase opacity-70 hover:opacity-90 mx-5 pb-3">See All</button>
+                </div>
+                <div class="w-full mx-4 flex flex-wrap">
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="Tumhare aanese.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Tumhare Aane Se </h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-4">Single.Ashu Shukla</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="raataan lambiyaan.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Raataan Lambiyan</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Jubin Nautiyal,,Asees Kaur,Tanishk Bagchi</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="ishq wala love.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Ishq Wala Love</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Vishal-Shekhar,Neeti Mohan</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="jab tak.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Jab tak</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-4">Armaan Malik</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="mehrama.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Mehrama</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Pritam,Darshan Raval,Antara Mitra</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="mera pyar tera pyar.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-xs font-semibold text-white tracking wide">Mera Pyar Tera Pyar</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-1">Jeet Gannguli,Arijit Singh</h2>
+                        </div>
+                    </div> 
+                </div>
+                <!-- section-10 -->
+                <div class="flex items-center justify-between px-6 py-3">
+                    <button class="text-2xl font-semibold text-white tracking-wider hover:underline">Happy Mix</button>
+                    <button class="text-zinc-500 text-xs font-semibold tracking-widest uppercase opacity-70 hover:opacity-90 mx-5 pb-3">See All</button>
+                </div>
+                <div class="w-full mx-4 flex flex-wrap">
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="o gujaria.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">O Gujariya</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb=0">Shefali Alvares,Nikhil D'Souza</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="kudinunachnede.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-xs font-semibold text-white tracking wide">Kudi Nu Nachne De</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-1">Vishal Dadlani,Sachin-Jigar</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="levitating.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Levitating(ft.DaBaby)</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-4">Dua Lipa,DaBaby</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="shapeofyou.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Shape of You</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-4">Ed Sheeran</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="need to know.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Need to Know</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-4">Doja Cat</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="nolie.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">No Lie</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-4">Sean Paul,Dua Lipa</h2>
+                        </div>
+                    </div> 
+                </div>
+        
+                <!-- section-14-->
+                <div class="flex items-center justify-between px-6 py-3">
+                    <button class="text-2xl font-semibold text-white tracking-wider hover:underline">K-Pop Mix</button>
+                    <button class="text-zinc-500 text-xs font-semibold tracking-widest uppercase opacity-70 hover:opacity-90 mx-5 pb-3">See All</button>
+                </div>
+                <div class="w-full mx-4 flex flex-wrap">
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="howyoulikethat.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">How You Like That</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-5">BLACKPINK</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="euphoria.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Euphoria</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-5">BTS</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="boywithluv.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Boy With Luv(feat.Halsey)</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">BTS,Halsey</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="Thatthat.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">That That(prod. & feat.SUGA of BTS)</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Chinmayi</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="dduddu.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">DDU-DU DDU-DU</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-5">BLACKPINK</h2>
+                        </div>
+                    </div>
+                    <div class="p-2 w-44 relative">
+                        <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                            <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                                <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                            <img src="gangnamstyle.jpg" class="h-auto w-full shadow mb-2">
+                            <h1 class="text-sm font-semibold text-white tracking wide">Gangnam Style</h1>
+                            <h2 class="text-xs text-neutral-500 tracking-wide pb-5">PSY</h2>
+                        </div>
+                    </div>
+                </div>
+            <!-- section-12-->
+            <div class="flex items-center justify-between px-6 py-3">
+                <button class="text-2xl font-semibold text-white tracking-wider hover:underline">Uniquely Yours</button>
+                <button class="text-zinc-500 text-xs font-semibold tracking-widest uppercase opacity-70 hover:opacity-90 mx-5 pb-3">See All</button>
+            </div>
+            <div class="w-full mx-4 flex flex-wrap">
+                <div class="p-2 w-44 relative">
+                    <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                        <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                            <button><i class="material-symbols-outlined text-2xl"><a href="Uniquely yours/onrepeat.html">play_arrow</a></i></button>
+                        </div>
+                    </div>
+                    <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                        <img src="onrepeat.jpg" class="h-auto w-full shadow mb-2">
+                        <h1 class="text-sm font-semibold text-white tracking wide">On Repeat</h1>
+                        <h2 class="text-xs text-neutral-500 tracking-wide pb-5">Songs you love right now.</h2>
+                    </div>
+                </div>
+                <div class="p-2 w-44 relative">
+                    <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                        <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                            <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                        </div>
+                    </div>
+                    <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                        <img src="timecapsule.jpg" class="h-auto w-full shadow mb-2">
+                        <h1 class="text-sm font-semibold text-white tracking wide">Your Time Capsule</h1>
+                        <h2 class="text-xs text-neutral-500 tracking-wide pb-5">Songs that take you back in time.</h2>
+                    </div>
+                </div>
+                <div class="p-2 w-44 relative">
+                    <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                        <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                            <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                        </div>
+                    </div>
+                    <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                        <img src="repeatrewind.jpg" class="h-auto w-full shadow mb-2">
+                        <h1 class="text-sm font-semibold text-white tracking wide">Repeat Rewind</h1>
+                        <h2 class="text-xs text-neutral-500 tracking-wide pb-9">Your past favourites.</h2>
+                    </div>
+                </div>
+                <div class="p-2 w-44 relative">
+                    <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                        <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                            <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                        </div>
+                    </div>
+                    <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                        <img src="liked songs.jpg" class="h-auto w-full shadow mb-2">
+                        <h1 class="text-sm font-semibold text-white tracking wide">Liked Songs</h1>
+                        <h2 class="text-xs text-neutral-500 tracking-wide pb-9">Chinmayi</h2>
+                    </div>
+                </div>
+                <div class="p-2 w-44 relative">
+                    <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                        <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                            <button><i class="material-symbols-outlined text-2xl">play_arrow</i></button>
+                        </div>
+                    </div>
+                    <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                        <img src="2020top.jpg" class="h-auto w-full shadow mb-2">
+                        <h1 class="text-sm font-semibold text-white tracking wide">Your Top Songs 2020</h1>
+                        <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Songs you loved the most this year.</h2>
+                    </div>
+                </div>
+                <div class="p-2 w-44 relative">
+                    <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                        <div class="bg-green-500 rounded-full h-10 w-10 flex items-center justify-center">
+                            <button><i class="material-symbols-outlined text-2xl"><a href="yourtopsongs/yourtopsong.html">play_arrow</a></i></button>
+                        </div>
+                    </div>
+                    <div class="bg-neutral-800 w-full h-auto p-5 rounded-lg shadow-md">
+                        <img src="2021top.jpg" class="h-auto w-full shadow mb-2">
+                        <h1 class="text-sm font-semibold text-white tracking wide">Your Top Songs 2021</h1>
+                        <h2 class="text-xs text-neutral-500 tracking-wide pb-0">Your favourites of this year.</h2>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+
+            
+        <!-- play bar -->
+        <div class="bg-neutral-800 w-full flex items-center justify-between px-3 sticky" style="height: 10.5vh;">
+            <div class="flex items-center">
+                <div>
+                    <h1 class="mb-1 text-sm text-white tracking-wide">Senorita</h1>
+                    <h2 class="text-xs text-neutral-500">Shawn Mendes,Camila Cabello</h2>
+                </div>
+                <button><i class="material-symbols-outlined text-base text-green-500 mx-4 ">favorite</i></button>
+                <button><i class="material-symbols-outlined text-base text-white opacity-60 hover:opacity-90 mx-1">branding_watermark</i></button>
+            </div>
+            <div class="flex flex-col justify-center w-1/4 items-center">
+                
+                <div class="flex items-center" style="margin-top: 9px;">
+                    <button class="text-lg text-white opacity-60 hover:opacity-90"><i class="material-symbols-outlined mx-4">shuffle</i></button>
+                    <button class="text-lg text-white opacity-60 hover:opacity-90"><i class="material-symbols-outlined mx-4 fa fa-step-backward fa-2x">skip_previous</i></button>
+                    <button class="text-lg text-white opacity-60 hover:opacity-90"><i class="material-symbols-outlined mx-4 fa fa-play-circle fa-5x">play_circle</i></button>
+                    <button class="text-lg text-white opacity-60 hover:opacity-90"><i class="material-symbols-outlined mx-4 fa fa-step-forward fa-2x">skip_next</i></button>
+                    <button class="text-lg text-white opacity-60 hover:opacity-90"><i class="material-symbols-outlined mx-4">replay</i></button>
+                </div>
+                <div class="w-full">
+                    <input type="range" name="range" id="myProgressBar" min="0" value="0" max="100" style="width: 320px; height: 5px; cursor: pointer;">
+                </div>
+            </div>
+                <div class="flex items-center">
+                    <button><i class="material-symbols-outlined text-base text-white opacity-60 hover:opacity-90 mx-2">playlist_play</i></button>
+                    <button><i class="material-symbols-outlined text-base text-white opacity-60 hover:opacity-90 mx-2">important_devices</i></button>
+                    <button><i class="material-symbols-outlined text-base text-white opacity-60 hover:opacity-90 mx-2">volume_up</i></button>
+                    <div class="w-20 ml-1 bg-white rounded-full mx-2 h-1 font-extrabold">
+                    </div>
+                </div>  
+        </div>
+     
+</div>
+
+     
+ <script src="app.js"></script> 
+
+</body>
+</html>
