@@ -18,6 +18,10 @@ This GitHub repository contains a demo version of a Spotify web, showcasing key 
  - Tailwind CSS: A utility-first CSS framework for styling the application.
  - Node.js: JavaScript runtime environment used for server-side scripting.
 
+## Screenshots
+
+![Home](screenshots/navbar.png)
+
  # Notes
    - This is a demo version and may not include all the features of the original Spotify application.
    - The Google sign-in functionality requires valid API credentials and appropriate configuration.
