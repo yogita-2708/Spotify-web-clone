@@ -20,7 +20,12 @@ This GitHub repository contains a demo version of a Spotify web, showcasing key 
 
 ## Screenshots
 
-![Home](screenshots/navbar.png)
+![Home](Spotify/screenshots/homepage.png)
+
+![Dashboard](Spotify/screenshots/dashboard.png)
+
+![Playlist](Spotify/screenshots/playlist.png)
+
 
  # Notes
    - This is a demo version and may not include all the features of the original Spotify application.
